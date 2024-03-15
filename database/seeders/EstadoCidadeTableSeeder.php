@@ -48,7 +48,7 @@ class EstadoCidadeTableSeeder extends Seeder
 
 				echo 'Estado: ' . $linha[0] . ' CodigoCidade: ' . $linha[2] . ' Nome: ' . $linha[3];
 				
-				//Consulta a tabela de 'T_ESTADOS' para buscar o 'id_estado'
+				//Consulta a tabela de 'estados' para buscar a 'sigla'
 				$sql = 'SELECT sigla FROM estados WHERE sigla=\'' . $linha[0] .'\';';
 				//echo $sql;
 				//executarSQL($db,$sql);
@@ -73,7 +73,7 @@ class EstadoCidadeTableSeeder extends Seeder
 			
 				$nome = $linha[3];
 				$codigo_cidade = $linha[2];
-				executarSQL($db, 'INSERT INTO cidades(codigo,nome,sigla_estado) VALUES ( "' . 
+				$this->executarSQL($db, 'INSERT INTO cidades(codigo,nome,sigla_estado) VALUES ( "' . 
 				$codigo_cidade . '", "' . 
 				$nome . '", "' . 
 				$sigla_estado . '");', $status);
@@ -173,5 +173,15 @@ class EstadoCidadeTableSeeder extends Seeder
 
 		//TODO5
         $this->lerArquivoEstados($db,$fp,$fname);
+
+		//TODO7
+		$this->fecharArquivo($fp,$fname);
+
+		//TODO8
+		$fname = 'municipios.csv';
+		$fp = $this->abrirArquivo($db,$fname);
+
+		//TODO9
+		$this->lerArquivoCidades($db,$fp,$fname);
     }
 }

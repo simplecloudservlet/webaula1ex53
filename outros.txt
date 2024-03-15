@@ -1,0 +1,25 @@
+<!-- Janela modal com as opcoes de pesquisa-->
+		<div id="modal-search" class="modal">
+			
+		</div>
+
+		<!-- JavaScript para converter a opcao de pesquisa em um link -->
+		<script>
+
+		</script>
+
+		<!-- Biblioteca para acessar o Google Maps-->
+		<!--<script src="https://maps.googleapis.com/maps/api/js">
+		</script>-->
+
+		<!-- Script para renderizar o maps-->
+		<script>
+
+		</script>	
+
+		<!-- Formatacao CSS para o canvas onde se encontra o maps-->
+		<style>
+
+		</style>	
+
+	</div>

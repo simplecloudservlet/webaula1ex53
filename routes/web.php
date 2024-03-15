@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CidadeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,3 +19,5 @@ Route::get('/', function () {
     //return view('welcome');
     return view('main');
 });
+Route::get('/cidades', [CidadeController::class, 'index']);
+

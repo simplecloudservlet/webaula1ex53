@@ -15,9 +15,18 @@ use App\Http\Controllers\CidadeController;
 |
 */
 
-Route::get('/', function () {
+//Route::get('/', function () {
     //return view('welcome');
-    return view('main');
-});
-Route::get('/cidades', [CidadeController::class, 'index']);
+//    return view('main');
+//});
+//Aqui redireciona / para o metodo 'index', e 
+//index adquire $cidades e 
+//redireciona para main
+Route::get('/', [CidadeController::class, 'index']);
+
+//Aqui redireciona para o metodo 'search', e
+//'search' adquire $cidades e 
+//redireciona para main
+Route::get('/cidades/{type}/{val}/search', [CidadeController::class, 'search']);
+
 

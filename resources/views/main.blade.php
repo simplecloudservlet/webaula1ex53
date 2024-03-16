@@ -26,23 +26,31 @@
 
 <body>
 
+<!-- -->
+
+<!-- -->
+
 	<div class="container" >
 		<!-- Menu no topo da pagina -->
-		<div class="nav navbar navbar-inverse">
-			<div class="navbar-inner">
-				<!-- opcao principal -->
-				<div class="navbar-header">
-					<a class="navbar-brand" href="{{URL::to('cidades') }}">Cidades</a>
-				</div>
-
-				<!-- Link para a janela modal de pesquisa-->
-				<ul class="nav navbar-nav">
-					<li>
-						<a data-toggle="modal" data-target="#modal-search">Pesquisar</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{URL::to('/') }}">Cidades</a>
+	<!-- Para o menu responsivo quando alterar as dimensoes -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-search" href="#">Pesquisar Modal</a>
+        </li>
+      </ul>
+      
+        <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modal-search" >Search</button>
+      
+    </div>
+  </div>
+</nav>
 
 		<!-- Conteudo principal da pagina-->
 		<table class="table">
@@ -68,7 +76,53 @@
 			</div>
 		</div>
 
+		<!-- Janela modal com as opcoes de pesquisa-->
+		<div id="modal-search" class="modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<input id="search-val" type="input" class="form-control" placeholder="Nome da cidade...">
+					
+						<!-- Botoes de radio para tipo de pesquisa-->
+						<div class="radio">
+                           	<label>
+							<input id="opt0" type="radio" name="search-type" value="0" checked>Exatamente</label>
+						</div>
+						<div class="radio">
+                           	<label>
+							<input id="opt1" type="radio" name="search-type" value="1" checked>Inicia com</label>
+						</div>
+						<div class="radio">
+                           	<label>
+							<input id="opt2" type="radio" name="search-type" value="2" checked>Contém</label>
+						</div>
+					</div>
+					<div class="modal-footer">
+							<button id="btn-search" class="btn btn-primary" data-dismiss="modal">Pesquisar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- JavaScript para converter a opcao de pesquisa em um link -->
+		<script>
+			$(function(){
+				$("#btn-search").click(function(){
+					var val = $("#search-val").val();
+					if(val.length==0)
+						val = "*";
+
+						//Chamar metodo do controller
+						window.location.assign("http://localhost/webaula1ex53/public/index.php/cidades/" +
+							$("input[name=search-type]:checked").val()+
+							"/" + val + "/search"
+						
+						);
+				});
+			});
+		</script>
 		
+	</div>
 	<!-- Esse trecho deve aparecer antes do </body> -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
